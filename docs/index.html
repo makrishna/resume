@@ -1,720 +1,874 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
-    <meta charset="utf-8" />
-    <title>Krishna Chaitanya | Interactive front-end developer</title>
-    <meta name="viewport" content="width=device-width,  initial-scale=1.0">
-    <meta content="Krishna Chaitanya" name="author" />
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<meta name="description" content="Krishna Chaitanya — Senior Full-Stack Engineer specialising in React, Node.js, Python, Docker, Kubernetes and AI Agents. Based in Canberra, ACT."/>
+<meta property="og:title" content="Krishna Chaitanya | Full-Stack Engineer"/>
+<meta property="og:description" content="React · Node.js · Python · Docker · Kubernetes · AI Agents"/>
+<meta property="og:url" content="https://makrishna.github.io/resume/"/>
+<title>Krishna Chaitanya | Full-Stack Engineer</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"/>
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet"/>
+<style>
+  /* ── TOKENS ── */
+  :root {
+    --bg:       #0d0f14;
+    --surface:  #13161e;
+    --card:     #191d27;
+    --border:   #232840;
+    --accent:   #6c8aff;
+    --accent2:  #a78bfa;
+    --green:    #34d399;
+    --text:     #e2e8f0;
+    --muted:    #8892a4;
+    --faint:    #3a4258;
+    --mono:     'JetBrains Mono', monospace;
+    --sans:     'Inter', system-ui, sans-serif;
+    --radius:   12px;
+    --radius-sm:6px;
+  }
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  html { scroll-behavior: smooth; }
+  body {
+    background: var(--bg);
+    color: var(--text);
+    font-family: var(--sans);
+    font-size: 15px;
+    line-height: 1.7;
+    -webkit-font-smoothing: antialiased;
+  }
+  a { color: var(--accent); text-decoration: none; }
+  a:hover { text-decoration: underline; }
 
-    <!-- App favicon -->
-    <link rel="shortcut icon" href="images/favicon.ico">
+  /* ── NAV ── */
+  nav {
+    position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+    background: rgba(13,15,20,0.85);
+    backdrop-filter: blur(14px);
+    border-bottom: 1px solid var(--border);
+    display: flex; align-items: center; justify-content: space-between;
+    padding: 0 2rem;
+    height: 58px;
+  }
+  .nav-brand {
+    font-family: var(--mono);
+    font-size: 14px;
+    color: var(--accent);
+    font-weight: 600;
+    letter-spacing: 0.04em;
+  }
+  .nav-links {
+    display: flex; gap: 1.8rem; list-style: none;
+  }
+  .nav-links a {
+    color: var(--muted); font-size: 13px; font-weight: 500;
+    transition: color .2s;
+    text-decoration: none;
+  }
+  .nav-links a:hover { color: var(--text); }
 
-    <meta property="og:image" content="images/users/user-4.jpg">
-    <meta property="og:site_name" content="Krishna Chaitanya">
-    <meta property="og:title" content="Krishna Chaitanya">
-    <meta property="og:type" content="website">
-    <meta property="og:url" content="https://makrishna.github.io/resume/">
-    <meta property="og:description"
-        content="Front-End Developer with 6+ years’ experience in Canberra building responsive, scalable React and
-                            TypeScript applications. Skilled in UI/UX implementation,
-                            REST API integration, component-driven architecture, and translating wireframes into
-                            reusable components.
-                            Experienced in greenfield projects, autonomous work, and collaborating with onshore/offshore
-                            teams.">
+  /* ── HERO ── */
+  .hero {
+    min-height: 100vh;
+    display: flex; align-items: center; justify-content: center;
+    padding: 6rem 2rem 4rem;
+    position: relative;
+    overflow: hidden;
+  }
+  .hero-grid {
+    position: absolute; inset: 0;
+    background-image:
+      linear-gradient(rgba(108,138,255,0.04) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(108,138,255,0.04) 1px, transparent 1px);
+    background-size: 48px 48px;
+    mask-image: radial-gradient(ellipse 80% 70% at 50% 40%, black, transparent);
+  }
+  .hero-glow {
+    position: absolute; top: 20%; left: 50%;
+    transform: translateX(-50%);
+    width: 600px; height: 300px;
+    background: radial-gradient(ellipse, rgba(108,138,255,0.12) 0%, transparent 70%);
+    pointer-events: none;
+  }
+  .hero-content {
+    position: relative; z-index: 1;
+    text-align: center; max-width: 760px;
+  }
+  .hero-badge {
+    display: inline-flex; align-items: center; gap: 8px;
+    background: rgba(108,138,255,0.1);
+    border: 1px solid rgba(108,138,255,0.25);
+    border-radius: 99px;
+    padding: 6px 16px;
+    font-family: var(--mono); font-size: 12px;
+    color: var(--accent);
+    margin-bottom: 1.8rem;
+    letter-spacing: 0.05em;
+  }
+  .hero-badge::before {
+    content: '';
+    width: 7px; height: 7px;
+    border-radius: 50%;
+    background: var(--green);
+    box-shadow: 0 0 8px var(--green);
+    animation: pulse 2s infinite;
+  }
+  @keyframes pulse {
+    0%,100% { opacity:1; } 50% { opacity:.4; }
+  }
+  .hero h1 {
+    font-size: clamp(2.6rem, 6vw, 4.2rem);
+    font-weight: 700;
+    line-height: 1.1;
+    letter-spacing: -0.03em;
+    margin-bottom: 1rem;
+  }
+  .hero h1 span {
+    background: linear-gradient(135deg, var(--accent), var(--accent2));
+    -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+  }
+  .hero-sub {
+    font-size: 1.1rem; color: var(--muted);
+    max-width: 560px; margin: 0 auto 2rem;
+  }
+  .hero-tags {
+    display: flex; flex-wrap: wrap; gap: 8px;
+    justify-content: center; margin-bottom: 2.4rem;
+  }
+  .tag {
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: 6px;
+    padding: 4px 12px;
+    font-family: var(--mono); font-size: 12px;
+    color: var(--muted);
+    transition: border-color .2s, color .2s;
+  }
+  .tag:hover { border-color: var(--accent); color: var(--accent); }
+  .hero-actions {
+    display: flex; gap: 12px; justify-content: center; flex-wrap: wrap;
+  }
+  .btn {
+    display: inline-flex; align-items: center; gap: 8px;
+    padding: 11px 24px; border-radius: var(--radius-sm);
+    font-size: 14px; font-weight: 600;
+    cursor: pointer; border: none;
+    transition: all .2s; text-decoration: none;
+  }
+  .btn-primary {
+    background: var(--accent); color: #0d0f14;
+  }
+  .btn-primary:hover { background: #8aa4ff; text-decoration: none; }
+  .btn-ghost {
+    background: transparent;
+    border: 1px solid var(--border);
+    color: var(--text);
+  }
+  .btn-ghost:hover { border-color: var(--accent); color: var(--accent); text-decoration: none; }
 
-    <link href="plugins/filter/magnific-popup.css" rel="stylesheet" type="text/css" />
-    <link href="plugins/animated/headline.css" rel="stylesheet" type="text/css" />
-    <!-- <script type="text/JavaScript">
-            $ (document).ready (function (){
-                $ ('#submit').click (function (){
-                    var name = $ ('#name').val ();
-                    var email = $ ('#email').val ();
+  /* ── LAYOUT ── */
+  .container { max-width: 1060px; margin: 0 auto; padding: 0 2rem; }
+  .section { padding: 5rem 0; }
+  .section-header {
+    display: flex; align-items: center; gap: 12px;
+    margin-bottom: 2.8rem;
+  }
+  .section-label {
+    font-family: var(--mono); font-size: 11px;
+    color: var(--accent); letter-spacing: 0.12em;
+    text-transform: uppercase; font-weight: 600;
+  }
+  .section-title {
+    font-size: 1.75rem; font-weight: 700;
+    letter-spacing: -0.02em;
+  }
+  .section-line {
+    flex: 1; height: 1px;
+    background: linear-gradient(90deg, var(--border), transparent);
+  }
 
-                    var varData = 'name=' + name + '&email=' + email;
-                    
-                    $.ajax ({
-                        type:'POST', 
-                        url:"php/contactTest.php", 
-                        success: function (){
-                            alert ("It was success");
-                        }
-                    })
-                })
-            });
-        </script>  -->
+  /* ── ABOUT ── */
+  #about { background: var(--surface); border-top: 1px solid var(--border); border-bottom: 1px solid var(--border); }
+  .about-grid {
+    display: grid; grid-template-columns: 1fr 1fr;
+    gap: 3rem; align-items: start;
+  }
+  .about-text p { color: var(--muted); margin-bottom: 1rem; line-height: 1.8; }
+  .about-text p:last-child { margin-bottom: 0; }
+  .about-details { display: flex; flex-direction: column; gap: 12px; }
+  .detail-row {
+    display: flex; align-items: flex-start; gap: 12px;
+    padding: 12px 16px;
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: var(--radius-sm);
+  }
+  .detail-label { color: var(--muted); font-size: 12px; min-width: 90px; padding-top: 1px; }
+  .detail-val { color: var(--text); font-size: 14px; font-weight: 500; }
 
-    <!-- App css -->
-    <link href="css/bootstrap.min.css" rel="stylesheet" type="text/css" />
-    <link href="css/icons.css" rel="stylesheet" type="text/css" />
-    <link href="css/style.css" rel="stylesheet" type="text/css" />
+  /* ── SKILLS ── */
+  .skills-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    gap: 1rem;
+  }
+  .skill-card {
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    padding: 1.2rem 1.4rem;
+    transition: border-color .2s, transform .2s;
+  }
+  .skill-card:hover { border-color: var(--accent); transform: translateY(-2px); }
+  .skill-card-icon { font-size: 1.4rem; margin-bottom: .5rem; }
+  .skill-card-label {
+    font-size: 11px; font-family: var(--mono);
+    color: var(--accent); text-transform: uppercase;
+    letter-spacing: 0.1em; margin-bottom: 6px;
+  }
+  .skill-card-value { color: var(--muted); font-size: 13.5px; line-height: 1.6; }
 
-    <style>
-        @-moz-keyframes spin {
-            100% {
-                -moz-transform: rotate (360deg);
-            }
-        }
+  /* ── EXPERIENCE ── */
+  .timeline { position: relative; }
+  .timeline::before {
+    content: ''; position: absolute;
+    left: 18px; top: 8px; bottom: 0;
+    width: 1px; background: var(--border);
+  }
+  .timeline-item { position: relative; padding-left: 52px; margin-bottom: 2.8rem; }
+  .timeline-dot {
+    position: absolute; left: 10px; top: 8px;
+    width: 17px; height: 17px;
+    border-radius: 50%;
+    background: var(--bg);
+    border: 2px solid var(--accent);
+    z-index: 1;
+  }
+  .timeline-dot.active { background: var(--accent); box-shadow: 0 0 12px rgba(108,138,255,.5); }
+  .timeline-card {
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    padding: 1.4rem 1.6rem;
+    transition: border-color .2s;
+  }
+  .timeline-card:hover { border-color: var(--faint); }
+  .timeline-header {
+    display: flex; justify-content: space-between; align-items: flex-start;
+    flex-wrap: wrap; gap: 8px; margin-bottom: .6rem;
+  }
+  .timeline-role { font-size: 1rem; font-weight: 700; color: var(--text); }
+  .timeline-period {
+    font-family: var(--mono); font-size: 12px;
+    color: var(--muted); white-space: nowrap;
+    background: var(--surface); border: 1px solid var(--border);
+    border-radius: 4px; padding: 2px 9px;
+  }
+  .timeline-company { font-size: 13px; color: var(--accent); margin-bottom: .8rem; font-weight: 500; }
+  .timeline-project {
+    font-size: 12px; font-family: var(--mono);
+    color: var(--accent2); margin-bottom: .8rem;
+    padding: 4px 10px; background: rgba(167,139,250,0.08);
+    border-left: 2px solid var(--accent2);
+    border-radius: 0 4px 4px 0;
+  }
+  .timeline-bullets { list-style: none; padding: 0; }
+  .timeline-bullets li {
+    position: relative; padding-left: 18px;
+    color: var(--muted); font-size: 13.5px; line-height: 1.7;
+    margin-bottom: 5px;
+  }
+  .timeline-bullets li::before {
+    content: '→'; position: absolute; left: 0;
+    color: var(--accent); font-size: 11px; top: 3px;
+  }
+  .timeline-bullets li strong { color: var(--text); }
+  .timeline-tags { display: flex; flex-wrap: wrap; gap: 6px; margin-top: 1rem; }
+  .timeline-tag {
+    font-family: var(--mono); font-size: 11px;
+    color: var(--muted);
+    background: var(--surface); border: 1px solid var(--border);
+    border-radius: 4px; padding: 2px 8px;
+  }
 
-        @-webkit-keyframes spin {
-            100% {
-                -webkit-transform: rotate (360deg);
-            }
-        }
+  /* ── PROJECTS ── */
+  #projects { background: var(--surface); border-top: 1px solid var(--border); border-bottom: 1px solid var(--border); }
+  .projects-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(310px, 1fr));
+    gap: 1.2rem;
+  }
+  .project-card {
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    padding: 1.4rem;
+    display: flex; flex-direction: column;
+    transition: border-color .2s, transform .2s;
+  }
+  .project-card:hover { border-color: var(--accent); transform: translateY(-3px); }
+  .project-period {
+    font-family: var(--mono); font-size: 11px;
+    color: var(--muted); margin-bottom: 6px;
+  }
+  .project-title { font-size: 1rem; font-weight: 700; margin-bottom: 4px; }
+  .project-client { font-size: 12px; color: var(--accent); margin-bottom: .8rem; }
+  .project-desc { color: var(--muted); font-size: 13px; line-height: 1.7; flex: 1; margin-bottom: 1rem; }
+  .project-techs { display: flex; flex-wrap: wrap; gap: 5px; }
+  .project-tech {
+    font-family: var(--mono); font-size: 11px;
+    color: var(--accent2); background: rgba(167,139,250,0.08);
+    border: 1px solid rgba(167,139,250,0.2);
+    border-radius: 4px; padding: 2px 8px;
+  }
 
-        @keyframes spin {
-            100% {
-                -webkit-transform: rotate (360deg);
-                transform: rotate (360deg);
-            }
-        }
-    </style>
+  /* ── METRICS BAR ── */
+  .metrics {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+    gap: 1px;
+    background: var(--border);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    overflow: hidden;
+    margin: 3rem 0 0;
+  }
+  .metric {
+    background: var(--card);
+    padding: 1.6rem; text-align: center;
+  }
+  .metric-num {
+    font-size: 2rem; font-weight: 700;
+    background: linear-gradient(135deg, var(--accent), var(--accent2));
+    -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+    line-height: 1;
+  }
+  .metric-label { color: var(--muted); font-size: 12px; margin-top: 4px; }
 
+  /* ── CONTACT ── */
+  .contact-grid {
+    display: grid; grid-template-columns: 1fr 1fr; gap: 3rem; align-items: start;
+  }
+  .contact-info { display: flex; flex-direction: column; gap: 1rem; }
+  .contact-item {
+    display: flex; align-items: center; gap: 14px;
+    padding: 14px 18px;
+    background: var(--card); border: 1px solid var(--border);
+    border-radius: var(--radius-sm);
+    transition: border-color .2s;
+  }
+  .contact-item:hover { border-color: var(--accent); }
+  .contact-icon { font-size: 1.2rem; }
+  .contact-item-label { font-size: 11px; color: var(--muted); margin-bottom: 1px; }
+  .contact-item-val { font-size: 14px; font-weight: 500; color: var(--text); }
+  .contact-form { display: flex; flex-direction: column; gap: 12px; }
+  .form-group { display: flex; flex-direction: column; gap: 5px; }
+  .form-label { font-size: 12px; color: var(--muted); font-weight: 500; }
+  .form-input, .form-textarea {
+    background: var(--card); border: 1px solid var(--border);
+    border-radius: var(--radius-sm);
+    color: var(--text); font-family: var(--sans); font-size: 14px;
+    padding: 10px 14px; outline: none;
+    transition: border-color .2s;
+    width: 100%;
+  }
+  .form-input:focus, .form-textarea:focus { border-color: var(--accent); }
+  .form-textarea { resize: vertical; min-height: 110px; }
+
+  /* ── FOOTER ── */
+  footer {
+    border-top: 1px solid var(--border);
+    padding: 2rem;
+    text-align: center;
+    color: var(--muted); font-size: 13px;
+  }
+
+  /* ── RESPONSIVE ── */
+  @media (max-width: 720px) {
+    .about-grid, .contact-grid { grid-template-columns: 1fr; }
+    .nav-links { display: none; }
+    .hero h1 { font-size: 2.2rem; }
+    .timeline::before { left: 10px; }
+    .timeline-item { padding-left: 36px; }
+    .timeline-dot { left: 2px; }
+  }
+  @media (prefers-reduced-motion: reduce) {
+    *, *::before, *::after { animation: none !important; transition: none !important; }
+  }
+</style>
 </head>
-
 <body>
 
-    <div class="main-wraper">
-        <section class="section bg-profile" id="profile_ripple">
-            <div class="zoo-profile">
-                <div class="container">
-                    <div class="row">
-                        <div class="col-sm-6 col-print-6 align-self-center mb-3 mb-lg-0">
-                            <div class="zoo-profile-main">
-                                <div class="zoo-profile-main-pic">
-                                    <img src="images/users/user-4.jpg" alt="" class="rounded-circle">
-                                    <span class="zoo-user-message">
-                                        <a href="#my-form"><i class="uil uil-comment-dots"></i></a>
-                                    </span>
-                                </div>
-                                <!--end zoo-profile-main-pic-->
-                                <div class="zoo-profile_user-detail">
-                                    <h5 class="zoo-user-name">Krishna Chaitanya</h5>
-                                    <p class="cd-headline loading-bar">
-                                        <span class="cd-words-wrapper">
-                                            <b class="is-visible">Frontend Developer</b>
-                                        </span>
-                                    </p>
-                                </div><!--end zoo-profile_user-detail-->
-                                <!--end zoo-profile_user-detail-->
-                            </div>
-                            <!--end profile-main-pic-->
-                        </div>
-                        <!--end col-->
-                        <div class="col-sm-4 col-print-4 ml-auto">
-                            <ul class="list-unstyled personal-detail">
-                                <li><i class="'uil uil-phone-volume mr-2"></i> <b> Phone </b> : +61 402 807 868</li>
-                                <li class="mt-2"><i class="uil uil-envelope mt-2 mr-2"></i> <b> Email </b> :
-                                    maringantikc@gmail.com</li>
-                            </ul><!--end personal-detail-->
-                            <ul class="list-inline social-icon mb-0">
-                                <!-- <li class="list-inline-item">
-                                        <a href="https://www.facebook.com/acharyakc" target="_blank" class="bg-blue">
-                                            <i class="uil uil-facebook-f"></i>
-                                        </a>
-                                    </li>    -->
-                                <li class="list-inline-item">
-                                    <a href="https://www.linkedin.com/in/krishna-chaitanya-a02391a5/" target="_blank"
-                                        class="bg-secondary">
-                                        <i class="uil uil-linkedin"></i>
-                                    </a>
-                                </li>
-                                <!-- <li class="list-inline-item">
-                                        <a href="#" class="bg-pink">
-                                            <i class="uil uil-dribbble"></i>
-                                        </a>
-                                    </li> -->
-                            </ul><!--end social-icon-->
-                        </div><!--end col-->
-                    </div>
-                    <!--end row-->
-                </div>
-                <!--end container-->
-            </div>
-            <!--end zoo-profile-->
-        </section>
-        <!--end section-->
+<!-- NAV -->
+<nav>
+  <span class="nav-brand">KC.dev</span>
+  <ul class="nav-links">
+    <li><a href="#about">About</a></li>
+    <li><a href="#skills">Skills</a></li>
+    <li><a href="#experience">Experience</a></li>
+    <li><a href="#projects">Projects</a></li>
+    <li><a href="#contact">Contact</a></li>
+  </ul>
+</nav>
 
-        <section class="section-md">
-            <div class="container">
-                <div class="row">
-                    <div class="col-12">
-                        <h4 class="header-title mb-3">About me !</h4>
-                    </div>
-                    <!--end col-->
-                    <div class="col-sm-6 col-print-6">
-                        <h4 class="text-primary font-weight-bold">I'm Krishna Chaitanya</h4>
-
-                        <p>Front-End Developer with 6+ years’ experience building responsive, scalable React and
-                            TypeScript applications. Skilled in UI/UX implementation,
-                            REST API integration, component-driven architecture, and translating wireframes into
-                            reusable components.
-                            Experienced in greenfield projects, autonomous work, and collaborating with onshore/offshore
-                            teams.
-                        </p>
-                        <form method="get" action="Krishna_Chaitanya_Resume.pdf">
-                            <button type="submit" class="btn btn-sm btn-soft-primary">Download CV</button>
-                        </form>
-                    </div>
-                    <!--end col-->
-                    <div class="col-sm-5 col-print-5 offset-lg-1 align-self-center">
-                        <p>
-                            <span class="personal-detail-title">Name</span>
-                            <span class="personal-detail-info">Krishna Chaitanya</span>
-                        </p>
-                        <p>
-                            <span class="personal-detail-title">Date of birth</span>
-                            <span class="personal-detail-info">12 march 1995</span>
-                        </p>
-                        <p>
-                            <span class="personal-detail-title">Spoken Langages</span>
-                            <span class="personal-detail-info">English - Telugu - Hindi</span>
-                        </p>
-                        <!-- <p>
-                            <span class="personal-detail-title">Nationality</span>
-                            <span class="personal-detail-info">INDIA</span>
-                        </p> -->
-                        <p>
-                            <span class="personal-detail-title">Interests</span>
-                            <span class="personal-detail-info">Music, Technology, Travel</span>
-                        </p>
-                    </div>
-                    <!--end col-->
-                </div>
-                <!--end row-->
-            </div>
-            <!--end container-->
-        </section>
-        <!--end section-->
-
-        <section class="section-md">
-            <div class="container">
-                <div class="row">
-                    <div class="col-12">
-                        <h4 class="header-title mb-3">Education & Experience</h4>
-                    </div>
-                    <!--end col-->
-                    <div class="col-sm-12 col-print-12">
-                        <div class="row">
-                            <div class="col-sm-6 col-print-6">
-                                <div class="resume-icon">
-                                    <i class="uil uil-graduation-hat"></i>
-                                    <h5 class="mt-n2">Education</h5>
-                                </div>
-                                <!--end resume-icon-->
-                                <div class="timeline">
-                                    <div class="time-item">
-                                        <div class="item-info">
-                                            <div class="font-14">2012 - 2016</div>
-                                            <h5 class="my-1 text-dark">University</h5>
-                                            <p>Bachelor of Computer Science</p>
-                                        </div>
-                                    </div>
-                                    <div class="time-item mt-3">
-                                        <div class="item-info">
-                                            <div class="font-14">2011 - 2012</div>
-                                            <h5 class="my-1 text-dark">High School</h5>
-                                            <p>Secondary Education</p>
-                                        </div>
-                                    </div>
-                                    <!--end time-item-->
-                                    
-                                    <!--end time-item-->
-                                    <!-- <div class="time-item  mt-3">
-                                            <div class="item-info">
-                                                <div class="font-14">2008 - 2010</div>
-                                                <h5 class="my-1 text-dark">Master</h5>
-                                                <p>Master of Science</p>
-                                            </div>
-                                        </div>end time-item  -->
-                                </div>
-                                <!--end timeline-->
-                            </div>
-                            <!--end col-->
-                            <div class="col-sm-6 col-print-6">
-                                <div class="resume-icon">
-                                    <i class="uil uil-suitcase-alt"></i>
-                                    <h5 class="mt-n2">Experience</h5>
-                                </div>
-                                <!--end resume-icon-->
-                                <div class="timeline">
-                                        <div class="time-item">
-                                            <div class="item-info">
-                                                <div class="font-14">2024 - Present</div>
-                                                <h5 class="my-1 text-dark">Freelancer</h5>
-                                                <p>Multiple Projects</p>
-                                            </div>
-                                        </div><!--end time-item-->
-                                        <div class="time-item">
-                                            <div class="item-info">
-                                                <div class="font-14">2022 - 2024</div>
-                                                <h5 class="my-1 text-dark">Senior Engineer</h5>
-                                                <p>Cambium Networks India</p>
-                                            </div>
-                                        </div><!--end time-item-->
-                                        <div class="time-item  mt-3">
-                                            <div class="item-info">
-                                                <div class="font-14">2018 - 2022</div>
-                                                <h5 class="my-1 text-dark">Software Engineer</h5>
-                                                <p>Anuta Networks India</p>
-                                            </div>
-                                        </div><!--end time-item-->
-                                        <div class="time-item mt-3">
-                                            <div class="item-info">
-                                                <div class="font-14">2017 - 2018</div>
-                                                <h5 class="my-1 text-dark">UI Developer</h5>
-                                                <p>CMS Computers Limited (INDIA)</p>
-                                            </div>
-                                        </div><!--end time-item-->
-                                        <div class="time-item mt-3">
-                                            <div class="item-info">
-                                                <div class="font-14">2016 - 2017</div>
-                                                <h5 class="my-1 text-dark">UI Designer</h5>
-                                                <p>KKTechs</p>
-                                            </div>
-                                        </div><!--end time-item-->   
-                                </div><!--end timeline-->
-                            </div>
-                            <!--end col-->
-                        </div>
-                        <!--end row-->
-                    </div>
-                    <!--end col-->
-
-                    <!--end col-->
-                </div>
-                <!--end row-->
-            </div>
-            <!--end container-->
-        </section>
-        <!--end section-->
-
-        <section class="section-sm my-clients">
-            <div class="container">
-                <div class="row justify-content-between">
-                    <div class="col-md-2 col-6">
-                        <img src="images/brand/3.png" alt="" class="img-fluid ">
-                    </div>
-                    <!--end col-->
-                    <div class="col-md-2 col-6">
-                        <img src="images/brand/4.png" alt="" class="img-fluid ">
-                    </div>
-                    <!--end col-->
-                    <div class="col-md-2 col-6">
-                        <img src="images/brand/1.png" alt="" class="img-fluid ">
-                    </div>
-                    <!--end col-->
-                    <div class="col-md-2 col-6">
-                        <img src="images/brand/2.png" alt="" class="img-fluid ">
-                    </div>
-                    <!--end col-->
-                    <div class="col-md-2 col-6">
-                        <img src="images/brand/5.png" alt="" class="img-fluid ">
-                    </div>
-                    <!--end col-->
-                </div>
-                <!--end row-->
-            </div>
-            <!--end container-->
-        </section>
-        <!--end section-->
-
-        <section class="section-md my-works">
-            <div class="col-sm-12 col-print-6">
-                <div class="d-flex">
-                    <h4 class="header-title mb-3">My Projects and Works</h4>
-                </div>
-                <!-- <div class="resume-icon">
-                    <i class="uil uil-cell"></i>
-                    <h5 class="mt-n2">My Works</h5>
-                </div> -->
-                <!--end resume-icon-->
-                <div class="timeline">
-                    <div class="time-item">
-                        <div class="item-info">
-                            <div class="font-14">2016 - 2017</div>
-                            <h5 class="my-1 text-dark">GoSeva Foundation Website</h5>
-                            <div class="col-sm-12 col-print-5 px-0">
-                                <p>
-                                    <span class="personal-detail-title">Client</span>
-                                    <span class="personal-detail-info">GoSeva Foundation</span>
-                                </p>
-                                <p>
-                                    <span class="personal-detail-title">Role</span>
-                                    <span class="personal-detail-info">UI Designer</span>
-                                </p>
-                                <p>
-                                    <span class="personal-detail-title">Technologies</span>
-                                    <span class="personal-detail-info">JavaScript (ES6), jQuery, HTML5, CSS3, PHP</span>
-                                </p>
-                                <p>
-                                    <span class="personal-detail-title">Description</span>
-                                    <span class="personal-detail-info">GoSeva Foundation is a non-profit organization
-                                        which provides shelter and food to the orphan cows offering poojas to them by
-                                        people's funds.
-                                        As a part of indian culture, cows are the sacred and worshipped, As they believe
-                                        that cows are the mother of all gods based on the Vedas (oldest indian
-                                        scriptures).
-                                        A website was developed to promote their organizations intentions which also
-                                        acts as a medium between people and the organization.</span>
-                                </p>
-                            </div>
-                        </div>
-                    </div>
-                    <!--end time-item-->
-                    <div class="time-item mt-3">
-                        <div class="item-info">
-                            <div class="font-14">2017 - 2018</div>
-                            <h5 class="my-1 text-dark">APGST-Andhra Pradesh GST Returns Software</h5>
-                            <div class="col-sm-12 col-print-5 px-0">
-                                <p>
-                                    <span class="personal-detail-title">Client</span>
-                                    <span class="personal-detail-info">Andhra Pradesh State Government</span>
-                                </p>
-                                <p>
-                                    <span class="personal-detail-title">Role</span>
-                                    <span class="personal-detail-info">UI Developer</span>
-                                </p>
-                                <p>
-                                    <span class="personal-detail-title">Technologies</span>
-                                    <span class="personal-detail-info">JavaScript (ES6), jQuery, HTML5, CSS3</span>
-                                </p>
-                                <p>
-                                    <span class="personal-detail-title">Description</span>
-                                    <span class="personal-detail-info">It was a GST Project used to file the GST returns
-                                        by the commercial vendors.It is a kind of
-                                        management system which is about developing a state GST website providing user
-                                        navigation links to various portals
-                                        of GST.Internal portals of GST is also developed providing credentials to the
-                                        officers to access their dashboards
-                                        doing approvals, escalations e.t.c.Statistics and operational reports are also
-                                        visualised making commercial tax
-                                        officers to understand reports in more easier way.
-                                    </span>
-                                </p>
-                            </div>
-                        </div>
-                    </div>
-                    <!--end time-item-->
-                    <div class="time-item  mt-3">
-                        <div class="item-info">
-                            <div class="font-14">2018 - 2022</div>
-                            <h5 class="my-1 text-dark">ATOM-Network orchestration software</h5>
-                            <div class="col-sm-12 col-print-5 px-0">
-                                <p>
-                                    <span class="personal-detail-title">Client</span>
-                                    <span class="personal-detail-info">Disney, Jio, Juniper</span>
-                                </p>
-                                <p>
-                                    <span class="personal-detail-title">Role</span>
-                                    <span class="personal-detail-info">Software Engineer</span>
-                                </p>
-                                <p>
-                                    <span class="personal-detail-title">Technologies</span>
-                                    <span class="personal-detail-info">Angular, Java, JavaScript (ES6), HTML5,
-                                        CSS3</span>
-                                </p>
-                                <p>
-                                    <span class="personal-detail-title">Description</span>
-                                    <span class="personal-detail-info">ATOM is a Network Orchestration and Automation
-                                        Software, which provides the solution
-                                        to network automation and multi vendor orchestration along with monitoring and
-                                        workflow features. I have designed and
-                                        developed interactive User interfaces using cutting edge web technologies like
-                                        Angular, Material, High Charts and Java.
-                                        Visualized the JSON and XML formatted data received using restful services as
-                                        grids, charts, tables, lists and many
-                                        other visualization types . Written custom Rest APIs when required.
-                                    </span>
-                                </p>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="time-item  mt-3">
-                        <div class="item-info">
-                            <div class="font-14">2022</div>
-                            <h5 class="my-1 text-dark">drivez.io | Freelance Project</h5>
-                            <div class="col-sm-12 col-print-5 px-0">
-                                <p>
-                                    <span class="personal-detail-title">Client</span>
-                                    <span class="personal-detail-info">Users needing cross-cloud file transfer capabilities.</span>
-                                </p>
-                                <p>
-                                    <span class="personal-detail-title">Role</span>
-                                    <span class="personal-detail-info">Front-End Engineer</span>
-                                </p>
-                                <p>
-                                    <span class="personal-detail-title">Technologies</span>
-                                    <span class="personal-detail-info">Angular, Java</span>
-                                </p>
-                                <p>
-                                    <span class="personal-detail-title">Description</span>
-                                    <span class="personal-detail-info">I developed a multi-step wizard that enabled users to configure hierarchical file transfers between different cloud providers, ensuring a smooth and intuitive setup process. 
-                                        I also built dashboards and UI workflows to track transfer history, progress, queued jobs, and error states. 
-                                        This included integrating REST APIs for authentication, file retrieval, cloud interactions, and scheduled tasks. 
-                                        Additionally, I improved the performance of large folder views by optimizing file list rendering and implementing pagination and lazy loading for seamless navigation through extensive directory structures.
-                                    </span>
-                                </p>
-                            </div>
-                        </div>
-                    </div>
-                    <!--end time-item-->
-                    <div class="time-item  mt-3">
-                        <div class="item-info">
-                            <div class="font-14">2022 - 2024</div>
-                            <h5 class="my-1 text-dark">LINK PLANNER</h5>
-                            <div class="col-sm-12 col-print-5 px-0">
-                                <p>
-                                    <span class="personal-detail-title">Client</span>
-                                    <span class="personal-detail-info">Network Planning Users</span>
-                                </p>
-                                <p>
-                                    <span class="personal-detail-title">Role</span>
-                                    <span class="personal-detail-info">Senior Engineer</span>
-                                </p>
-                                <p>
-                                    <span class="personal-detail-title">Technologies</span>
-                                    <span class="personal-detail-info">React, Python</span>
-                                </p>
-                                <p>
-                                    <span class="personal-detail-title">Description</span>
-                                    <span class="personal-detail-info">I designed and built reusable, component-driven UI modules in React 18 and Redux, 
-                                        focusing on performance and scalability for large datasets such as maps, network nodes, and path simulations. 
-                                        I worked extensively on geospatial data visualisation, using mapping libraries and custom components to display points, coverage areas, and topographical layers. The role required close collaboration with backend engineers and product teams across onshore and offshore locations to refine requirements and validate technical feasibility. 
-                                        I also improved render performance through memoization, virtualization, and optimized API handling. 
-                                        To maintain code quality, I introduced best practices including unit testing, reusable component patterns, improved folder structures, and consistent code reviews. Additionally, I contributed to CI/CD efforts by helping containerize services with Docker and supporting deployments in AWS environments.
-                                    </span>
-                                </p>
-                            </div>
-                        </div>
-                    </div>
-                     <div class="time-item  mt-3">
-                        <div class="item-info">
-                            <div class="font-14">2024 - Present</div>
-                            <h5 class="my-1 text-dark">Freelance Projects</h5>
-                            <div class="col-sm-12 col-print-5 px-0">
-                                <p>
-                                    <span class="personal-detail-title">Client</span>
-                                    <span class="personal-detail-info">A range of individuals and businesses needing scalable, custom-built web applications.</span>
-                                </p>
-                                <p>
-                                    <span class="personal-detail-title">Role</span>
-                                    <span class="personal-detail-info">Full Stack Developer</span>
-                                </p>
-                                <p>
-                                    <span class="personal-detail-title">Technologies</span>
-                                    <span class="personal-detail-info">Angular, React, Java, Python, AWS, Docker</span>
-                                </p>
-                                <p>
-                                    <span class="personal-detail-title">Description</span>
-                                    <span class="personal-detail-info">I develop scalable, high-performance web applications using a modern technology stack that includes Angular and React for building responsive, 
-                                        component-driven front-end interfaces, Java and Python for robust back-end development, and AWS and Docker for cloud deployment, 
-                                        containerization, and infrastructure management. My approach ensures that applications are modular, maintainable, and capable of handling large-scale user interactions, 
-                                        while integrating seamlessly with APIs, databases, and third-party services.
-                                    </span>
-                                </p>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <!--end timeline-->
-            </div>
-            <!--end col-->
-        </section>
-
-        <section class="section-md contact-form">
-            <div class="container">
-                <div class="row">
-                    <div class="col-12 mb-3">
-                        <h4 class="header-title mb-3">Contact Me</h4>
-                    </div>
-                    <!--end col-->
-                    <div class="col-sm-4">
-                        <div class="contact-info">
-                            <div class="icon">
-                                <i class='uil uil-phone-volume'></i>
-                            </div>
-                            <div class="content">
-                                <h5>Feel Free To Call Me:</h5>
-                                <span> (+61) 402-807-868</span>
-                            </div>
-                        </div>
-                        <!--end contact-info-->
-
-                        <div class="contact-info">
-                            <div class="icon">
-                                <i class='uil uil-envelope'></i>
-                            </div>
-                            <div class="content">
-                                <h5>Mail Me:</h5>
-                                <span>maringantikc@gmail.com</span>
-                            </div>
-                        </div>
-                        <!--end contact-info-->
-
-                        <div class="contact-info">
-                            <div class="icon">
-                                <i class='uil uil-map-marker'></i>
-                            </div>
-                            <div class="content">
-                                <h5>My Location:</h5>
-                                <span>Canberra</span>
-                            </div>
-                        </div>
-                        <!--end contact-info-->
-                    </div>
-                    <!--end col-->
-                    <div class="col-sm-8">
-                        <div class="contact-form">
-                            <div id="message"></div>
-                            <form name="my-form" method="POST" action="https://formspree.io/xwknvrvp" id="my-form">
-                                <div class="row">
-                                    <div class="form-group col-md-6">
-                                        <label>Name</label>
-                                        <input type="text" name="name" autocomplete="off" class="form-control" id="name"
-                                            required>
-                                    </div>
-                                    <!--end col-->
-                                    <div class="form-group col-md-6">
-                                        <label>Email address</label>
-                                        <input type="email" name="email" autocomplete="off" class="form-control"
-                                            id="email" required>
-                                    </div>
-                                    <!--end col-->
-                                    <div class="form-group col-md-12">
-                                        <label>Message</label>
-                                        <textarea rows="4" name="message" autocomplete="off" class="form-control"
-                                            id="comments"></textarea>
-                                    </div>
-                                    <!--end col-->
-                                    <div class="form-group col-md-12">
-                                        <button type="submit" value="Submit now" name="submit" id="submit"
-                                            class="btn btn-primary px-5 py-2">Submit now</button>
-                                    </div>
-                                    <!--end col-->
-                                </div>
-                                <!--end row-->
-                            </form>
-                            <!--end form-->
-                            <div id="simple-msg"></div>
-
-                        </div>
-                        <!--end contact-form-->
-                    </div>
-                    <!--end col-->
-                </div>
-                <!--end row-->
-            </div>
-            <!--end container-->
-        </section>
-        <!--end section-->
-
-        <section class="section-md thanks-text">
-            <div class="container">
-                <div class="row">
-                    <div class="col-12">
-                        <h3 class="text-center">Thank you !</h3>
-                    </div>
-                    <!--end col-->
-                </div>
-                <!--end row-->
-            </div>
-            <!--end container-->
-        </section>
-        <!--end section-->
-
-        <footer class="footer-area">
-            <div class="container">
-                <div class="row">
-                    <div class="col-sm-12 text-center">
-                        <p class="copyright mb-0 py-4">Copyright © 2020 Krishna Chaitanya. All rights reserved.
-                        </p>
-                    </div>
-                    <!--end col-->
-                </div>
-                <!--end row-->
-            </div>
-            <!--end container-->
-        </footer>
-        <!--end footer-area-->
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-grid"></div>
+  <div class="hero-glow"></div>
+  <div class="hero-content">
+    <div class="hero-badge">Available for new opportunities</div>
+    <h1>Krishna<br/><span>Acharya</span></h1>
+    <p class="hero-sub">Senior Full-Stack Engineer building scalable, cloud-native applications — from React UIs to Kubernetes-orchestrated microservices and AI-powered workflows.</p>
+    <div class="hero-tags">
+      <span class="tag">React 18</span>
+      <span class="tag">Node.js</span>
+      <span class="tag">Python</span>
+      <span class="tag">TypeScript</span>
+      <span class="tag">Docker</span>
+      <span class="tag">Kubernetes</span>
+      <span class="tag">AI Agents</span>
+      <span class="tag">AWS</span>
     </div>
-    <!--end main-wraper-->
+    <div class="hero-actions">
+      <a href="#contact" class="btn btn-primary">Get in touch</a>
+      <a href="https://github.com/makrishna" target="_blank" rel="noopener" class="btn btn-ghost">GitHub ↗</a>
+      <a href="https://www.linkedin.com/in/krishna-chaitanya-a02391a5/" target="_blank" rel="noopener" class="btn btn-ghost">LinkedIn ↗</a>
+    </div>
+  </div>
+</section>
 
+<!-- ABOUT -->
+<section id="about" class="section">
+  <div class="container">
+    <div class="section-header">
+      <span class="section-label">01</span>
+      <h2 class="section-title">About Me</h2>
+      <div class="section-line"></div>
+    </div>
+    <div class="about-grid">
+      <div class="about-text">
+        <p>I'm a Senior Full-Stack Engineer with 9+ years of end-to-end product delivery experience. I specialise in React, Node.js, Python, Docker, and Kubernetes — building and deploying cloud-native applications that scale to thousands of concurrent users and devices.</p>
+        <p>My deepest expertise is in enterprise systems: I architected the core schema path navigation engine for a network orchestration platform managing 10,000+ devices for Disney, Jio, and Juniper, and built containerised simulation platforms deployed on AWS with Kubernetes orchestration. I'm equally comfortable owning the full stack — from pixel-perfect React UIs to Python APIs to Dockerfile and Helm chart.</p>
+        <p>Currently based in Canberra, ACT, delivering freelance full-stack and AI agent projects while staying sharp across the cloud-native ecosystem. Available immediately for the right opportunity.</p>
+      </div>
+      <div class="about-details">
+        <div class="detail-row">
+          <span class="detail-label">Location</span>
+          <span class="detail-val">Canberra, ACT, Australia</span>
+        </div>
+        <div class="detail-row">
+          <span class="detail-label">Phone</span>
+          <span class="detail-val">+61 402 807 868</span>
+        </div>
+        <div class="detail-row">
+          <span class="detail-label">Email</span>
+          <span class="detail-val">maringantikc@gmail.com</span>
+        </div>
+        <div class="detail-row">
+          <span class="detail-label">Availability</span>
+          <span class="detail-val" style="color:var(--green)">Immediate / 2 weeks</span>
+        </div>
+        <div class="detail-row">
+          <span class="detail-label">Languages</span>
+          <span class="detail-val">English · Telugu · Hindi</span>
+        </div>
+        <div class="detail-row">
+          <span class="detail-label">Interests</span>
+          <span class="detail-val">Technology · Music · Travel</span>
+        </div>
+      </div>
+    </div>
+    <div class="metrics">
+      <div class="metric"><div class="metric-num">9+</div><div class="metric-label">Years experience</div></div>
+      <div class="metric"><div class="metric-num">10k+</div><div class="metric-label">Devices orchestrated</div></div>
+      <div class="metric"><div class="metric-num">40%</div><div class="metric-label">Performance gains delivered</div></div>
+      <div class="metric"><div class="metric-num">50%</div><div class="metric-label">Load time reduction</div></div>
+      <div class="metric"><div class="metric-num">3</div><div class="metric-label">Fortune-500 clients</div></div>
+    </div>
+  </div>
+</section>
 
-    <!-- jQuery  -->
-    <script src="js/jquery.min.js"></script>
-    <script src="js/bootstrap.bundle.min.js"></script>
-    <script src="plugins/ripple/jquery.ripples.js"></script>
-    <script src="plugins/counter/jquery.counterup.min.js"></script>
-    <script src="plugins/counter/waypoints.min.js"></script>
-    <script src="plugins/filter/isotope.pkgd.min.js"></script>
-    <script src="plugins/filter/masonry.pkgd.min.js"></script>
-    <script src="plugins/filter/jquery.magnific-popup.min.js"></script>
-    <script src="plugins/animated/headline.js"></script>
+<!-- SKILLS -->
+<section id="skills" class="section">
+  <div class="container">
+    <div class="section-header">
+      <span class="section-label">02</span>
+      <h2 class="section-title">Core Skills</h2>
+      <div class="section-line"></div>
+    </div>
+    <div class="skills-grid">
+      <div class="skill-card">
+        <div class="skill-card-icon">⚛️</div>
+        <div class="skill-card-label">Frontend</div>
+        <div class="skill-card-value">React 15–18, Redux, TypeScript, Next.js, Angular v2–10+, AngularJS, SCSS, Material-UI, Responsive Design</div>
+      </div>
+      <div class="skill-card">
+        <div class="skill-card-icon">🟢</div>
+        <div class="skill-card-label">Backend</div>
+        <div class="skill-card-value">Node.js, Python, RESTful APIs, Microservices, Event-driven Architecture, Spring MVC, PHP</div>
+      </div>
+      <div class="skill-card">
+        <div class="skill-card-icon">🐳</div>
+        <div class="skill-card-label">Containerisation</div>
+        <div class="skill-card-value">Docker (multi-stage builds, Compose, container networking, volumes), container registry management</div>
+      </div>
+      <div class="skill-card">
+        <div class="skill-card-icon">☸️</div>
+        <div class="skill-card-label">Kubernetes</div>
+        <div class="skill-card-value">Deployments, Services, Ingress, HPA, ConfigMaps, Secrets, Helm charts, rolling deployments, pod autoscaling</div>
+      </div>
+      <div class="skill-card">
+        <div class="skill-card-icon">🤖</div>
+        <div class="skill-card-label">AI & Agents</div>
+        <div class="skill-card-value">AI Agent design, LLM API integration, prompt engineering, automated workflows, multi-step agent orchestration, Node.js pipelines</div>
+      </div>
+      <div class="skill-card">
+        <div class="skill-card-icon">☁️</div>
+        <div class="skill-card-label">Cloud & IaC</div>
+        <div class="skill-card-value">AWS (EC2, RDS, S3, EKS), Azure, Terraform, GitLab CI, GitHub Actions, CI/CD pipelines</div>
+      </div>
+      <div class="skill-card">
+        <div class="skill-card-icon">🗄️</div>
+        <div class="skill-card-label">Databases</div>
+        <div class="skill-card-value">PostgreSQL, MySQL, database design & query optimisation, schema architecture</div>
+      </div>
+      <div class="skill-card">
+        <div class="skill-card-icon">🔗</div>
+        <div class="skill-card-label">APIs & Integrations</div>
+        <div class="skill-card-value">REST, OAuth 2.0, Microsoft Graph, SharePoint, Google Drive, Dropbox, OneDrive, S3</div>
+      </div>
+      <div class="skill-card">
+        <div class="skill-card-icon">🧪</div>
+        <div class="skill-card-label">Testing & Quality</div>
+        <div class="skill-card-value">Jest, Playwright, Protractor, unit & integration testing, code review, TDD practices</div>
+      </div>
+    </div>
+  </div>
+</section>
 
-    <!-- App js -->
-    <script src="js/app.js"></script>
-    <script>
-        window.addEventListener("DOMContentLoaded", function () {
+<!-- EXPERIENCE -->
+<section id="experience" class="section">
+  <div class="container">
+    <div class="section-header">
+      <span class="section-label">03</span>
+      <h2 class="section-title">Experience</h2>
+      <div class="section-line"></div>
+    </div>
+    <div class="timeline">
 
-            // get the form elements defined in your form HTML above
+      <!-- CURRENT -->
+      <div class="timeline-item">
+        <div class="timeline-dot active"></div>
+        <div class="timeline-card">
+          <div class="timeline-header">
+            <span class="timeline-role">Service Advisor &amp; Freelance Full-Stack Developer</span>
+            <span class="timeline-period">Jan 2025 – Present</span>
+          </div>
+          <div class="timeline-company">Volvo Cars Canberra · Self-employed · Canberra, ACT</div>
+          <ul class="timeline-bullets">
+            <li><strong>Freelance full-stack delivery:</strong> End-to-end web applications using React, TypeScript, Node.js, Python — containerised with Docker and deployed on AWS/Azure.</li>
+            <li><strong>AI agent workflows:</strong> Designing LLM-powered automation pipelines including prompt-engineered document processing, data extraction agents, and Node.js orchestration layers with state management, retries, and output validation.</li>
+            <li><strong>Client consulting:</strong> Architecture advisory on cloud-native patterns, Kubernetes adoption, and AI tooling for small businesses.</li>
+          </ul>
+          <div class="timeline-tags">
+            <span class="timeline-tag">React</span><span class="timeline-tag">Node.js</span><span class="timeline-tag">Python</span><span class="timeline-tag">Docker</span><span class="timeline-tag">AI Agents</span><span class="timeline-tag">AWS</span>
+          </div>
+        </div>
+      </div>
 
-            var form = document.getElementById("my-form");
-            var button = document.getElementById("submit");
-            var status = document.getElementById("simple-msg");
+      <!-- CAMBIUM -->
+      <div class="timeline-item">
+        <div class="timeline-dot"></div>
+        <div class="timeline-card">
+          <div class="timeline-header">
+            <span class="timeline-role">Senior Software Engineer</span>
+            <span class="timeline-period">Oct 2022 – Jul 2024</span>
+          </div>
+          <div class="timeline-company">Cambium Networks · India (Remote)</div>
+          <div class="timeline-project">Link Planner — Large-Scale Network Planning &amp; Simulation Platform</div>
+          <ul class="timeline-bullets">
+            <li><strong>Full-stack React + Python + Docker + Kubernetes:</strong> Led end-to-end development of a globally-used wireless network simulation tool — React 18 / Redux / TypeScript frontend through Python REST APIs, containerised with Docker, deployed on AWS with Kubernetes HPA for dynamic scaling.</li>
+            <li><strong>CI/CD pipelines:</strong> GitLab CI with Docker image builds and Kubernetes rolling deployments — zero-downtime releases.</li>
+            <li><strong>Performance:</strong> Memoisation, virtualisation, and API response batching achieved 40% improvement in application responsiveness for geospatial map rendering and large network graphs.</li>
+            <li><strong>Engineering standards:</strong> Established Jest unit testing, reusable component patterns, and code review standards — 25% team productivity improvement.</li>
+          </ul>
+          <div class="timeline-tags">
+            <span class="timeline-tag">React 18</span><span class="timeline-tag">Redux</span><span class="timeline-tag">TypeScript</span><span class="timeline-tag">Python</span><span class="timeline-tag">Docker</span><span class="timeline-tag">Kubernetes</span><span class="timeline-tag">AWS</span><span class="timeline-tag">CI/CD</span>
+          </div>
+        </div>
+      </div>
 
-            // Success and Error functions for after the form is submitted
+      <!-- ANUTA -->
+      <div class="timeline-item">
+        <div class="timeline-dot"></div>
+        <div class="timeline-card">
+          <div class="timeline-header">
+            <span class="timeline-role">Software Engineer / UI Developer</span>
+            <span class="timeline-period">Jul 2018 – Oct 2022</span>
+          </div>
+          <div class="timeline-company">Anuta Networks · India</div>
+          <div class="timeline-project">Enterprise Network Orchestration Platform — Disney, Jio, Juniper (10,000+ Devices)</div>
+          <ul class="timeline-bullets">
+            <li><strong>Schema-driven path navigation:</strong> Architected the core schema path navigation engine in React and Node.js — dynamic traversal of deeply nested device schemas enabling policy enforcement, compliance checks, and configuration management across 10,000+ heterogeneous network devices.</li>
+            <li><strong>Kubernetes-orchestrated microservices:</strong> Containerised React frontend and Node.js/Spring MVC backend services with Docker, deployed to Kubernetes clusters with HPA — horizontal scaling for growing device fleets without downtime.</li>
+            <li><strong>Docker container management:</strong> Configured inter-container networking, persistent volume claims, environment-specific ConfigMaps and Secrets.</li>
+            <li><strong>AngularJS → React migration:</strong> Led modernisation; code splitting and lazy loading reduced initial load time by 50%.</li>
+          </ul>
+          <div class="timeline-tags">
+            <span class="timeline-tag">React</span><span class="timeline-tag">Node.js</span><span class="timeline-tag">Docker</span><span class="timeline-tag">Kubernetes</span><span class="timeline-tag">Spring MVC</span><span class="timeline-tag">Highcharts</span>
+          </div>
+        </div>
+      </div>
 
-            function success() {
-                form.reset();
-                button.style = "display: none ";
-                form.style = "display:none";
-                status.style = `display: flex;
-                                    height: calc (100vh - 688px);
-                                    justify-content: center;
-                                    align-items: center;
-                                    font-size: 24px;`;
-                status.classList.add('uil', 'uil-comment-alt-check');
-                status.innerHTML = "Thank You";
-            }
+      <!-- DRIVEZ -->
+      <div class="timeline-item">
+        <div class="timeline-dot"></div>
+        <div class="timeline-card">
+          <div class="timeline-header">
+            <span class="timeline-role">Frontend Developer</span>
+            <span class="timeline-period">May 2022 – Aug 2022</span>
+          </div>
+          <div class="timeline-company">Drivez.io — Multi-Cloud Storage Platform</div>
+          <ul class="timeline-bullets">
+            <li>Built Angular 10 + Node.js cloud file management app integrating Google Drive, Dropbox, OneDrive, and S3; Dockerised for consistent deployments.</li>
+            <li>Virtualised rendering for folder structures with 10,000+ files using pagination and lazy loading.</li>
+          </ul>
+          <div class="timeline-tags">
+            <span class="timeline-tag">Angular 10</span><span class="timeline-tag">Node.js</span><span class="timeline-tag">Docker</span><span class="timeline-tag">REST APIs</span>
+          </div>
+        </div>
+      </div>
 
-            function error() {
-                button.innerHTML = "Submit now";
-                status.classList.add('uil', 'uil-comment-alt-exclamation');
-                status.style = "color:chocolate";
-                status.innerHTML = "Oops! There was a problem.";
-            }
+      <!-- GST -->
+      <div class="timeline-item">
+        <div class="timeline-dot"></div>
+        <div class="timeline-card">
+          <div class="timeline-header">
+            <span class="timeline-role">UI Developer</span>
+            <span class="timeline-period">May 2017 – Jul 2018</span>
+          </div>
+          <div class="timeline-company">AP State GST Project — Government of Andhra Pradesh</div>
+          <ul class="timeline-bullets">
+            <li>Developed public-facing GST portal for taxpayer registration, return filing, and payment processing across Andhra Pradesh — simplified forms reduced citizen errors by 35%.</li>
+          </ul>
+          <div class="timeline-tags">
+            <span class="timeline-tag">JavaScript</span><span class="timeline-tag">HTML5/CSS3</span><span class="timeline-tag">PHP</span><span class="timeline-tag">MySQL</span>
+          </div>
+        </div>
+      </div>
 
-            // handle the form submission event
+      <!-- KKTECHS -->
+      <div class="timeline-item">
+        <div class="timeline-dot"></div>
+        <div class="timeline-card">
+          <div class="timeline-header">
+            <span class="timeline-role">Full-Stack Developer / Co-Founder</span>
+            <span class="timeline-period">Jan 2016 – May 2017</span>
+          </div>
+          <div class="timeline-company">KKTechs.in · Freelance</div>
+          <ul class="timeline-bullets">
+            <li>Founded freelance dev studio delivering billing systems, portfolio sites, and data dashboards using Angular, PHP, MySQL, and Bootstrap — end-to-end from requirements to deployment.</li>
+          </ul>
+          <div class="timeline-tags">
+            <span class="timeline-tag">Angular</span><span class="timeline-tag">PHP</span><span class="timeline-tag">MySQL</span><span class="timeline-tag">Bootstrap</span>
+          </div>
+        </div>
+      </div>
 
-            form.addEventListener("submit", function (ev) {
-                ev.preventDefault();
-                status.innerHTML = "";
-                status.classList.remove('uil', 'uil-comment-alt-exclamation');
-                button.innerHTML = `<div class="uil uil-refresh" style="animation:spin 2s linear infinite;display:inline-block"></div>`;
-                button.style = ""
-                var data = new FormData(form);
-                ajax(form.method, form.action, data, success, error);
-            });
-        });
+    </div><!-- /timeline -->
+  </div>
+</section>
 
-        // helper function for sending an AJAX request
+<!-- PROJECTS -->
+<section id="projects" class="section">
+  <div class="container">
+    <div class="section-header">
+      <span class="section-label">04</span>
+      <h2 class="section-title">Key Projects</h2>
+      <div class="section-line"></div>
+    </div>
+    <div class="projects-grid">
 
-        function ajax(method, url, data, success, error) {
-            var xhr = new XMLHttpRequest();
-            xhr.open(method, url);
-            xhr.setRequestHeader("Accept", "application/json");
-            xhr.onreadystatechange = function () {
-                if (xhr.readyState !== XMLHttpRequest.DONE) return;
-                if (xhr.status === 200) {
-                    success(xhr.response, xhr.responseType);
-                } else {
-                    error(xhr.status, xhr.response, xhr.responseType);
-                }
-            };
-            xhr.send(data);
-        }
-    </script>
+      <div class="project-card">
+        <div class="project-period">2018 – 2022</div>
+        <div class="project-title">Network Orchestration Platform — Schema Path Navigation</div>
+        <div class="project-client">Disney · Jio · Juniper</div>
+        <p class="project-desc">Core schema-driven path navigation engine built in React + Node.js enabling dynamic traversal of deeply nested device configuration schemas. Powers policy enforcement, compliance auditing, and real-time configuration management across 10,000+ network devices. Frontend and backend services containerised with Docker, orchestrated by Kubernetes with HPA for horizontal pod autoscaling during peak provisioning loads.</p>
+        <div class="project-techs">
+          <span class="project-tech">React</span><span class="project-tech">Node.js</span><span class="project-tech">Docker</span><span class="project-tech">Kubernetes</span><span class="project-tech">HPA</span>
+        </div>
+      </div>
+
+      <div class="project-card">
+        <div class="project-period">2022 – 2024</div>
+        <div class="project-title">Link Planner — Cloud-Native Simulation Platform</div>
+        <div class="project-client">Cambium Networks · Global Network Engineers</div>
+        <p class="project-desc">Full end-to-end React 18 + Python + Docker + Kubernetes stack for wireless network planning and simulation. Geospatial visualisation of network nodes, coverage areas, and topographical layers. 40% performance improvement through virtualisation and API batching. GitLab CI/CD with Kubernetes rolling deployments for zero-downtime releases.</p>
+        <div class="project-techs">
+          <span class="project-tech">React 18</span><span class="project-tech">Python</span><span class="project-tech">Docker</span><span class="project-tech">Kubernetes</span><span class="project-tech">AWS</span><span class="project-tech">GitLab CI</span>
+        </div>
+      </div>
+
+      <div class="project-card">
+        <div class="project-period">2024 – Present</div>
+        <div class="project-title">AI Agent Workflows &amp; Automation</div>
+        <div class="project-client">Freelance Clients</div>
+        <p class="project-desc">Designed and implemented LLM-powered automation workflows using AI agent patterns — tool-use pipelines, context management, and prompt engineering for document processing and data extraction. Node.js orchestration layer coordinating multi-step AI agent actions with state management, retries, and output validation in production.</p>
+        <div class="project-techs">
+          <span class="project-tech">AI Agents</span><span class="project-tech">LLM APIs</span><span class="project-tech">Node.js</span><span class="project-tech">Prompt Engineering</span>
+        </div>
+      </div>
+
+      <div class="project-card">
+        <div class="project-period">2022</div>
+        <div class="project-title">Drivez.io — Multi-Cloud File Transfer</div>
+        <div class="project-client">Drivez.io</div>
+        <p class="project-desc">Angular 10 + Node.js cloud file management application integrating Google Drive, Dropbox, OneDrive, and S3 APIs. Multi-step configuration wizard for hierarchical cross-cloud transfers. Virtualised rendering for 10,000+ file folder structures. Dockerised for consistent local and production deployments.</p>
+        <div class="project-techs">
+          <span class="project-tech">Angular 10</span><span class="project-tech">Node.js</span><span class="project-tech">Docker</span><span class="project-tech">Google Drive</span><span class="project-tech">S3</span>
+        </div>
+      </div>
+
+      <div class="project-card">
+        <div class="project-period">2017 – 2018</div>
+        <div class="project-title">AP State GST Portal</div>
+        <div class="project-client">Government of Andhra Pradesh</div>
+        <p class="project-desc">Public-facing GST citizen portal covering taxpayer registration, return filing, payment processing, and officer dashboards. Simplified form UX reduced citizen errors by 35%. Integrated REST APIs with .NET and PHP backend for tax filing, compliance reporting, and authentication.</p>
+        <div class="project-techs">
+          <span class="project-tech">JavaScript</span><span class="project-tech">HTML5</span><span class="project-tech">PHP</span><span class="project-tech">.NET</span><span class="project-tech">MySQL</span>
+        </div>
+      </div>
+
+      <div class="project-card">
+        <div class="project-period">2016 – 2017</div>
+        <div class="project-title">GoSeva Foundation Website</div>
+        <div class="project-client">GoSeva Foundation (Non-profit)</div>
+        <p class="project-desc">Full website for a non-profit organisation providing shelter and food to cows — designed to act as a bridge between the public and the organisation, enabling donations and awareness. Built with JavaScript, jQuery, HTML5, CSS3, and PHP.</p>
+        <div class="project-techs">
+          <span class="project-tech">JavaScript</span><span class="project-tech">jQuery</span><span class="project-tech">PHP</span><span class="project-tech">CSS3</span>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section id="contact" class="section">
+  <div class="container">
+    <div class="section-header">
+      <span class="section-label">05</span>
+      <h2 class="section-title">Get in Touch</h2>
+      <div class="section-line"></div>
+    </div>
+    <div class="contact-grid">
+      <div class="contact-info">
+        <p style="color:var(--muted); margin-bottom:1rem; line-height:1.8;">I'm open to full-time roles, contract work, and interesting freelance projects. If you're building something with React, Node.js, Python, Kubernetes, or AI agents — let's talk.</p>
+        <div class="contact-item">
+          <span class="contact-icon">📞</span>
+          <div>
+            <div class="contact-item-label">Phone</div>
+            <div class="contact-item-val">+61 402 807 868</div>
+          </div>
+        </div>
+        <div class="contact-item">
+          <span class="contact-icon">✉️</span>
+          <div>
+            <div class="contact-item-label">Email</div>
+            <div class="contact-item-val"><a href="mailto:maringantikc@gmail.com">maringantikc@gmail.com</a></div>
+          </div>
+        </div>
+        <div class="contact-item">
+          <span class="contact-icon">📍</span>
+          <div>
+            <div class="contact-item-label">Location</div>
+            <div class="contact-item-val">Canberra, ACT, Australia</div>
+          </div>
+        </div>
+        <div class="contact-item">
+          <span class="contact-icon">💼</span>
+          <div>
+            <div class="contact-item-label">LinkedIn</div>
+            <div class="contact-item-val"><a href="https://www.linkedin.com/in/krishna-chaitanya-a02391a5/" target="_blank" rel="noopener">linkedin.com/in/krishna-chaitanya</a></div>
+          </div>
+        </div>
+        <div class="contact-item">
+          <span class="contact-icon">🐙</span>
+          <div>
+            <div class="contact-item-label">GitHub</div>
+            <div class="contact-item-val"><a href="https://github.com/makrishna" target="_blank" rel="noopener">github.com/makrishna</a></div>
+          </div>
+        </div>
+      </div>
+      <form class="contact-form" method="post" action="php/contact.php">
+        <div class="form-group">
+          <label class="form-label" for="name">Name</label>
+          <input class="form-input" id="name" type="text" placeholder="Your name" required/>
+        </div>
+        <div class="form-group">
+          <label class="form-label" for="email">Email</label>
+          <input class="form-input" id="email" type="email" placeholder="your@email.com" required/>
+        </div>
+        <div class="form-group">
+          <label class="form-label" for="message">Message</label>
+          <textarea class="form-textarea" id="message" placeholder="Tell me about your project or opportunity…" required></textarea>
+        </div>
+        <button type="submit" class="btn btn-primary" style="align-self:flex-start">Send message →</button>
+        <div id="form-status" style="font-size:13px; color:var(--green); display:none; margin-top:4px;">✓ Message sent! I'll get back to you soon.</div>
+      </form>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <p>© 2026 Krishna Chaitanya Maringanti · Canberra, ACT · Built with care ☕</p>
+</footer>
+
+<script>
+  // Smooth active nav highlight
+  const sections = document.querySelectorAll('section[id]');
+  const navLinks = document.querySelectorAll('.nav-links a');
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(e => {
+      if (e.isIntersecting) {
+        navLinks.forEach(l => l.style.color = '');
+        const active = document.querySelector(`.nav-links a[href="#${e.target.id}"]`);
+        if (active) active.style.color = 'var(--accent)';
+      }
+    });
+  }, { threshold: 0.4 });
+  sections.forEach(s => observer.observe(s));
+
+  // Scroll reveal
+  const cards = document.querySelectorAll('.timeline-card, .skill-card, .project-card, .contact-item');
+  const revealObserver = new IntersectionObserver((entries) => {
+    entries.forEach(e => {
+      if (e.isIntersecting) {
+        e.target.style.opacity = '1';
+        e.target.style.transform = 'translateY(0)';
+      }
+    });
+  }, { threshold: 0.1 });
+  cards.forEach(c => {
+    c.style.opacity = '0';
+    c.style.transform = 'translateY(18px)';
+    c.style.transition = 'opacity .5s ease, transform .5s ease';
+    revealObserver.observe(c);
+  });
+
+  // Contact form (mailto fallback — replace with your backend/formspree if desired)
+  function handleSubmit(e) {
+    e.preventDefault();
+    const name = document.getElementById('name').value;
+    const email = document.getElementById('email').value;
+    const message = document.getElementById('message').value;
+    const subject = encodeURIComponent(`Portfolio contact from ${name}`);
+    const body = encodeURIComponent(`Name: ${name}\nEmail: ${email}\n\n${message}`);
+    window.location.href = `mailto:maringantikc@gmail.com?subject=${subject}&body=${body}`;
+    document.getElementById('form-status').style.display = 'block';
+  }
+</script>
 </body>
-
 </html>
